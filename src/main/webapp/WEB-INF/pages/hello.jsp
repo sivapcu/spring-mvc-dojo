@@ -20,9 +20,14 @@
 	<body class="claro">
 		<h2>dojo/request and dojo/xhr</h2>
 		<h3>${greeting}</h3>
+		<br/>
 		<div data-dojo-type="dijit/Dialog" id="myDialog" >
 			<p>This is dialog content</p>
 		</div>
+		<div id="progressDiv" style="display: none;">
+			<p>Progressing..........</p>
+		</div>
+		<br/>
 		<button id="request" data-dojo-type="dijit/form/Button" type="button">request</button>
 		<button id="requestDotGet" data-dojo-type="dijit/form/Button" type="button">request dot get</button>
 		<button id="requestMethodGet" data-dojo-type="dijit/form/Button" type="button">request method get</button>
@@ -30,7 +35,8 @@
 		<button id="xhr" data-dojo-type="dijit/form/Button" type="button">xhr</button>
 		<button id="xhrDotGet" data-dojo-type="dijit/form/Button" type="button">xhr dot get</button>
 		<button id="xhrMethodGet" data-dojo-type="dijit/form/Button" type="button">xhr method get</button>
-		
+		<br/><br/>
+		<button id="customObject" data-dojo-type="dijit/form/Button" type="button">Custom</button>
 		<br/><br/>
 
 		<div id="result"></div>
@@ -63,6 +69,10 @@
 				
 				on(registry.byId("xhrMethodGet"), "click", function(evt){
 					xhrMethodGetClick("${pageContext.request.contextPath}/hellojson");
+				});
+
+				on(registry.byId("customObject"), "click", function(evt){
+					customObjectClick("${pageContext.request.contextPath}/hellojson");
 				});
 			});
 		</script>

@@ -1,3 +1,28 @@
+var httpRequest = null;
+require([ "dojo/request", "dojo/dom"], function(request, dom) {
+	httpRequest = {
+		send : function(url, args) {
+			request(url, args).then(function(data) {
+				dom.byId("result").innerHTML += "<br/>" + data;
+			}, function(err) {
+				dom.byId("result").innerHTML += "<br/>" + err;
+			});
+		}
+	};
+});
+
+require(["dojo/aspect", "dijit/registry", "dojo/dom", "dojo/domReady!"], function(aspect, registry, dom){
+	aspect.before(httpRequest, "send", function(){
+		dom.byId("result").innerHTML += "<br/> Before Http Request";
+		toggleProgressDiv();
+	});
+	
+	aspect.after(httpRequest, "send", function(){
+		dom.byId("result").innerHTML += "<br/> After Http Request";
+		toggleProgressDiv();
+	});
+});
+
 require(["dojo/aspect", "dojo/request", "dojo/dom", "dijit/registry", "dojo/domReady!"], function(aspect, request, dom, registry){
 	/*aspect.before(request, "get", function(){
 		console.log("request.get");
@@ -29,6 +54,23 @@ require(["dojo/aspect", "dojo/request", "dojo/dom", "dijit/registry", "dojo/domR
 	    };
 	});
 });
+
+function toggleProgressDiv(){
+	require(["dojo/dom", "dojo/dom-style", "dojo/domReady!"], function(dom, domStyle){
+		
+		if (domStyle.get(dom.byId('progressDiv'), "display") == "none") {
+			domStyle.set(dom.byId('progressDiv'), "display", "block");
+		} else {
+			domStyle.set(dom.byId('progressDiv'), "display", "none");
+		}
+	});
+}
+
+
+function customObjectClick(url){
+	var fullUrl = "http://localhost:8080"+url;
+	httpRequest.send(fullUrl, {method : "GET"});
+}
 
 function requestClick(url) {
 	require([ "dojo/request", "dojo/dom", "dijit/registry", "dojo/domReady!" ], function(request, dom, registry) {
