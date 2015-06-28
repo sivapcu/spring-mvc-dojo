@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<title>Dojo + Spring MVC</title>
+		<title></title>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/js/dojoRoot/dijit/themes/claro/claro.css">
 		<script> 
 			var dojoConfig = {
@@ -18,7 +18,8 @@
 	</head>
 	
 	<body class="claro">
-		<h1>${greeting}</h1>
+		<h2>dojo/request and dojo/xhr</h2>
+		<h3>${greeting}</h3>
 		<div data-dojo-type="dijit/Dialog" id="myDialog" >
 			<p>This is dialog content</p>
 		</div>

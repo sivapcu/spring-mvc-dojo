@@ -14,15 +14,15 @@ require(["dojo/aspect", "dojo/request", "dojo/dom", "dijit/registry", "dojo/domR
 			//logic before ajax request
 			var dialog = registry.byId("myDialog");
 			dialog.show();
-	    	/*console.log("Before request.get");
-			dom.byId("result").innerHTML += "<br/>"+"Aspect Before request.get";*/
+	    	console.log("Before request.get");
+			dom.byId("result").innerHTML += "<br/>"+"Aspect Before request.get";
 
 			// make ajax request
 			var promise = originalXhr(url, args);
 	      
 			//logic after ajax request
-			/*console.log("After request.get");
-			dom.byId("result").innerHTML += "<br/>"+"Aspect after request.get";*/
+			console.log("After request.get");
+			dom.byId("result").innerHTML += "<br/>"+"Aspect after request.get";
 			dialog.hide();
 			
 			return promise;
